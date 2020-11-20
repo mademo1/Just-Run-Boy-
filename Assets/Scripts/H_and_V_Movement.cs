@@ -4,89 +4,85 @@ using UnityEngine;
 
 public class H_and_V_Movement : MonoBehaviour
 {
-    private float x, y;
-    public float velocity, posicioninicialx, posicioninicialy;
-    public float limitxder, limitxizq, limityarriba, limityabajo;
-    public bool hor_o_ver, der_o_izq, arriba_o_abajo;
+    private float x, y, startpostionx, startpostiony;
+    public float velocity;
+    public float limitxright, limitxleft, limitytop, limitybot;
+    public bool hor_or_ver, right_or_left, top_or_bot;
 
     // Start is called before the first frame update
     void Start()
     {
-        x = 1;
-        posicioninicialx = transform.position.x;
-        y = 1;
-        posicioninicialy = transform.position.y;
+        x = velocity;
+        startpostionx = transform.position.x;
+        y = velocity;
+        startpostiony = transform.position.y;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (hor_o_ver == false)
+        if (hor_or_ver == false)
         {
-            if (arriba_o_abajo == true)
+            if (top_or_bot == true)
             {
                 transform.Translate(new Vector2(0, y) * Time.deltaTime * 1, Space.World);
 
-                if (transform.position.y > posicioninicialy + limityarriba)
+                if (transform.position.y > startpostiony + limitytop)
                 {
                     y = -velocity;
                 }
 
-                if (transform.position.y < posicioninicialy - limityabajo)
+                if (transform.position.y < startpostiony - limitybot)
                 {
                     y = velocity;
                 }
             }
 
-            if (arriba_o_abajo == false)
+            if (top_or_bot == false)
             {
                 transform.Translate(new Vector2(0, -y) * Time.deltaTime * 1, Space.World);
 
-                if (transform.position.y < posicioninicialy - limityabajo)
+                if (transform.position.y < startpostiony - limitybot)
                 {
                     y = -velocity;
                 }
 
-                if (transform.position.y > posicioninicialy + limityarriba)
+                if (transform.position.y > startpostiony + limitybot)
                 {
                     y = velocity;
                 }
             }
         }
 
-        if (hor_o_ver == true)
+        if (hor_or_ver == true)
         {
-            if (der_o_izq == true)
+            if (right_or_left == true)
             {
                 transform.Translate(new Vector2(x, 0) * Time.deltaTime * 1, Space.World);
 
-                if (transform.position.x > posicioninicialx + limitxder)
+                if (transform.position.x > startpostionx + limitxright)
                 {
                     x = -velocity;
-                    GetComponent<SpriteRenderer>().flipX = false;
                 }
 
-                if (transform.position.x < posicioninicialx - limitxizq)
+                if (transform.position.x < startpostionx - limitxleft)
                 {
                     x = velocity;
-                    GetComponent<SpriteRenderer>().flipX = true;
                 }
             }
 
-            if (der_o_izq == false)
+            if (right_or_left == false)
             {
                 transform.Translate(new Vector2(-x, 0) * Time.deltaTime * 1, Space.World);
 
-                if (transform.position.x < posicioninicialx - limitxizq)
+                if (transform.position.x < startpostionx - limitxleft)
                 {
                     x = -velocity;
-                    GetComponent<SpriteRenderer>().flipX = true;
                 }
 
-                if (transform.position.x > posicioninicialx + limitxder)
+                if (transform.position.x > startpostionx + limitxright)
                 {
                     x = velocity;
-                    GetComponent<SpriteRenderer>().flipX = false;
                 }
             }
         }
