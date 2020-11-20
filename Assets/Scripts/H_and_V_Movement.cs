@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class H_and_V_Movement : MonoBehaviour
 {
-    private float x, y, startpostionx, startpostiony;
-    public float velocity;
-    public float limitxright, limitxleft, limitytop, limitybot;
+    private int x, y, startpostionx, startpostiony;
+    public int limitxright, limitxleft, limitytop, limitybot, velocity;
     public bool hor_or_ver, right_or_left, top_or_bot;
 
     // Start is called before the first frame update
